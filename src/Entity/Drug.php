@@ -27,11 +27,6 @@ class Drug
      */
     private $type;
 
-    /**
-     * @ORM\OneToOne(targetEntity=Recurrence::class, inversedBy="drug", cascade={"persist", "remove"})
-     */
-    private $recurrence;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -57,18 +52,6 @@ class Drug
     public function setType(string $type): self
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getRecurrence(): ?Recurrence
-    {
-        return $this->recurrence;
-    }
-
-    public function setRecurrence(?Recurrence $recurrence): self
-    {
-        $this->recurrence = $recurrence;
 
         return $this;
     }

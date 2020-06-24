@@ -50,7 +50,8 @@ class Recurrence
     private $treatments;
 
     /**
-     * @ORM\OneToOne(targetEntity=Drug::class, mappedBy="recurrence", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Drug::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $drug;
 
@@ -157,15 +158,9 @@ class Recurrence
         return $this->drug;
     }
 
-    public function setDrug(?Drug $drug): self
+    public function setDrug(Drug $drug): self
     {
         $this->drug = $drug;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newRecurrence = null === $drug ? null : $this;
-        if ($drug->getRecurrence() !== $newRecurrence) {
-            $drug->setRecurrence($newRecurrence);
-        }
 
         return $this;
     }
