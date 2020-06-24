@@ -14,6 +14,11 @@
                 {% endif %}
             </li>
             <li>
+                {% if is_granted('ROLE_USER') %}
+                    <a class="nav-link" href="{{ path('patient_index') }}">Personal Space</a>
+                {% endif %}
+            </li>
+            <li>
                 {% if app.user %}
                     <a href="{{ path('app_logout') }}">Logout</a>
                 {% else %}
