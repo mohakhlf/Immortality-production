@@ -32,6 +32,11 @@ class Totem
      */
     private $user;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Images::class, cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +80,18 @@ class Totem
         if ($user->getTotem() !== $newTotem) {
             $user->setTotem($newTotem);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
