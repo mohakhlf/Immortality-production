@@ -1,3 +1,3 @@
 # Immortality-production
 
-### Penez à faire un `composer install` les gars si il y a des modifs sur le compoer.json
+### Penez à faire un `composer install` si il y a des modifs sur le compoer.json
