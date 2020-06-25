@@ -4,8 +4,11 @@
 namespace App\Controller;
 
 
+use App\Entity\Treatment;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\TreatmentRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,8 +19,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PatientController extends AbstractController
 {
+    private $user;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->user = $userRepository;
+    }
+
     /**
      * @Route("/", name="patient_index", methods={"GET"})
+     * @return Response
      */
     public function index(): Response
     {
