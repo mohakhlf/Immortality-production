@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -67,9 +69,14 @@ class User implements UserInterface
     private $totem;
 
     /**
-     * @ORM\OneToOne(targetEntity=Treatment::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Treatment::class, mappedBy="user")
      */
-    private $treatment;
+    private $treatments;
+
+    public function __construct()
+    {
+        $this->treatments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -221,14 +228,33 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getTreatment(): ?Treatment
+    /**
+     * @return Collection|Treatment[]
+     */
+    public function getTreatments(): Collection
     {
-        return $this->treatment;
+        return $this->treatments;
     }
 
-    public function setTreatment(?Treatment $treatment): self
+    public function addTreatment(Treatment $treatment): self
     {
-        $this->treatment = $treatment;
+        if (!$this->treatments->contains($treatment)) {
+            $this->treatments[] = $treatment;
+            $treatment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTreatment(Treatment $treatment): self
+    {
+        if ($this->treatments->contains($treatment)) {
+            $this->treatments->removeElement($treatment);
+            // set the owning side to null (unless already changed)
+            if ($treatment->getUser() === $this) {
+                $treatment->setUser(null);
+            }
+        }
 
         return $this;
     }

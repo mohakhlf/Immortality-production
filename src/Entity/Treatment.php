@@ -25,19 +25,17 @@ class Treatment
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="treatment", cascade={"persist", "remove"})
-     */
-    private $user;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Recurrence::class, mappedBy="treatment", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Recurrence::class, mappedBy="treatment")
      */
     private $recurrences;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="treatments")
+     */
+    private $user;
 
     public function __construct()
     {
-        $this->recurrence = new ArrayCollection();
         $this->recurrences = new ArrayCollection();
     }
 
@@ -54,24 +52,6 @@ class Treatment
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        // set (or unset) the owning side of the relation if necessary
-        //$newTreatment = null === $user ? null : $this;
-        //if ($user->getTreatment() !== $newTreatment) {
-        //   $user->setTreatment($newTreatment);
-        //}
 
         return $this;
     }
@@ -106,4 +86,17 @@ class Treatment
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }
