@@ -1,13 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TotemController!{% endblock %}
+{% block title %}Totem{% endblock %}
 
 {% block body %}
 
 <div class="container">
     <h3>Nom : {{ totem.name }}</h3>
     <h3>Score : {{ totem.score }}</h3>
-    <p>{{ totem.treatment.user.name }}</p>
     <img src="{{ asset('assets/images/' ~totem.image.name~ '.png') }}" alt="totem picture">
 </div>
 {% endblock %}

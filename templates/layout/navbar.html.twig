@@ -28,6 +28,15 @@
                     <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                 {% endif %}
             </li>
+            <li class="nav-link">
+                <strong>
+                    {% if is_granted('ROLE_USER') %}
+                        Hello {{ app.user.name }} !
+                    {% else %}
+                        Hello !
+                    {% endif %}
+                </strong>
+            </li>
         </ul>
     </div>
 </nav>
