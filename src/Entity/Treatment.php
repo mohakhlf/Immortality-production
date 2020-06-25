@@ -30,13 +30,15 @@ class Treatment
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Recurrence::class, inversedBy="treatments")
+     * @ORM\OneToMany(targetEntity=Recurrence::class, mappedBy="treatment", orphanRemoval=true)
      */
-    private $recurrence;
+    private $recurrences;
+
 
     public function __construct()
     {
         $this->recurrence = new ArrayCollection();
+        $this->recurrences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,10 +68,10 @@ class Treatment
         $this->user = $user;
 
         // set (or unset) the owning side of the relation if necessary
-        $newTreatment = null === $user ? null : $this;
-        if ($user->getTreatment() !== $newTreatment) {
-            $user->setTreatment($newTreatment);
-        }
+        //$newTreatment = null === $user ? null : $this;
+        //if ($user->getTreatment() !== $newTreatment) {
+        //   $user->setTreatment($newTreatment);
+        //}
 
         return $this;
     }
@@ -77,15 +79,16 @@ class Treatment
     /**
      * @return Collection|Recurrence[]
      */
-    public function getRecurrence(): Collection
+    public function getRecurrences(): Collection
     {
-        return $this->recurrence;
+        return $this->recurrences;
     }
 
     public function addRecurrence(Recurrence $recurrence): self
     {
-        if (!$this->recurrence->contains($recurrence)) {
-            $this->recurrence[] = $recurrence;
+        if (!$this->recurrences->contains($recurrence)) {
+            $this->recurrences[] = $recurrence;
+            $recurrence->setTreatment($this);
         }
 
         return $this;
@@ -93,8 +96,12 @@ class Treatment
 
     public function removeRecurrence(Recurrence $recurrence): self
     {
-        if ($this->recurrence->contains($recurrence)) {
-            $this->recurrence->removeElement($recurrence);
+        if ($this->recurrences->contains($recurrence)) {
+            $this->recurrences->removeElement($recurrence);
+            // set the owning side to null (unless already changed)
+            if ($recurrence->getTreatment() === $this) {
+                $recurrence->setTreatment(null);
+            }
         }
 
         return $this;

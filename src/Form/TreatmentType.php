@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Treatment;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +15,10 @@ class TreatmentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('user')
-            ->add('recurrence')
+            ->add('user', EntityType::class, [
+                'class'=>User::class,
+                'choice_label'=>'id',
+                'attr'=>['disabled'=>'disabled']])
         ;
     }
 

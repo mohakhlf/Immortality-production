@@ -45,15 +45,16 @@ class Recurrence
     private $end;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Treatment::class, mappedBy="recurrence")
-     */
-    private $treatments;
-
-    /**
      * @ORM\OneToOne(targetEntity=Drug::class, cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $drug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Treatment::class, inversedBy="recurrences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $treatment;
 
     public function __construct()
     {
@@ -125,34 +126,6 @@ class Recurrence
         return $this;
     }
 
-    /**
-     * @return Collection|Treatment[]
-     */
-    public function getTreatments(): Collection
-    {
-        return $this->treatments;
-    }
-
-    public function addTreatment(Treatment $treatment): self
-    {
-        if (!$this->treatments->contains($treatment)) {
-            $this->treatments[] = $treatment;
-            $treatment->addRecurrence($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTreatment(Treatment $treatment): self
-    {
-        if ($this->treatments->contains($treatment)) {
-            $this->treatments->removeElement($treatment);
-            $treatment->removeRecurrence($this);
-        }
-
-        return $this;
-    }
-
     public function getDrug(): ?Drug
     {
         return $this->drug;
@@ -161,6 +134,18 @@ class Recurrence
     public function setDrug(Drug $drug): self
     {
         $this->drug = $drug;
+
+        return $this;
+    }
+
+    public function getTreatment(): ?Treatment
+    {
+        return $this->treatment;
+    }
+
+    public function setTreatment(?Treatment $treatment): self
+    {
+        $this->treatment = $treatment;
 
         return $this;
     }

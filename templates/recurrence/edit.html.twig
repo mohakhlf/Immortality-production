@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Recurrence{% endblock %}
+
+{% block body %}
+    <h1>Edit Recurrence</h1>
+
+    {{ include('recurrence/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('recurrence_index') }}">back to list</a>
+
+    {{ include('recurrence/_delete_form.html.twig') }}
+{% endblock %}

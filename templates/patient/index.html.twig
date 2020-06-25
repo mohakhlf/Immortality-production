@@ -20,7 +20,27 @@
             <td>Gender :</td>
             <td>{{ app.user.gender }}</td>
         </tr>
+        {# L'id c'est juste pour voir qui il me récupère par rapport au treatment, a enlever quand les routes
+        seront terminées #}
+        <tr>
+            <td>ID : </td>
+            <td>{{ app.user.id }}</td>
+        </tr>
     </table>
 
     <a href="{{ path('patient_edit', {'id': app.user.id}) }}">Modifier</a>
+
+    <h3>My Treatment</h3>
+
+    {% if not app.user.treatment %}
+        <a href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
+    {% else %}
+        <table>
+            <tr>
+                <td>Name :</td>
+                <td>{{ app.user.treatment.name }}</td>
+            </tr>
+        </table>
+    {% endif %}
+
 {% endblock %}
