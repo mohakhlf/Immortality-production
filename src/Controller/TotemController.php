@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Totem;
 use App\Entity\Treatment;
 use App\Entity\User;
+use App\Repository\TotemRepository;
 use App\Repository\TreatmentRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,25 +22,22 @@ class TotemController extends AbstractController
 
     private $treatment;
 
-    public function __construct(UserRepository $userRepository, TreatmentRepository $treatmentRepository)
+    private $totem;
+
+    public function __construct(UserRepository $userRepository, TreatmentRepository $treatmentRepository, TotemRepository $totemRepository)
     {
         $this->user = $userRepository;
         $this->treatment = $treatmentRepository;
+        $this->totem = $totemRepository;
     }
 
     /**
-     * @Route("/user/{user}/treatment/{treatment}/totem/{id}", name="totem_show")
-     * @param Totem $totem
-     * @param Treatment $treatment
-     * @param User $user
+     * @Route("/user/{user}/totem/", name="totem_show")
      * @return Response
      */
-    public function show(Totem $totem, Treatment $treatment, User $user)
+    public function show(): Response
     {
         return $this->render('totem/index.html.twig', [
-            'totem' => $totem,
-            'treatment' => $treatment,
-            'user' => $user,
         ]);
     }
 }

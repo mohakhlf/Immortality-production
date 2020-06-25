@@ -11,10 +11,6 @@
 <div class="example-wrapper">
     <h1>Hello {{ user.name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/pierremuller/Wild Code School/Hackathons/hackathon_juin_doctolib/immortality-production/src/Controller/TotemController.php'|file_link(0) }}">src/Controller/TotemController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/pierremuller/Wild Code School/Hackathons/hackathon_juin_doctolib/immortality-production/templates/totem/index.html.twig'|file_link(0) }}">templates/totem/index.html.twig</a></code></li>
-    </ul>
+    <h3>{{ totem.name }}</h3>
 </div>
 {% endblock %}

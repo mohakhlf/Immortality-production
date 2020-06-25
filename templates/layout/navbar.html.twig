@@ -18,14 +18,11 @@
                     <a class="nav-link" href="{{ path('patient_index') }}">Personal Space</a>
                 {% endif %}
             </li>
-            <li>
-                {#<a href="{{ path('totem_show', {'user': user.id, 'treatment': treatment.id, 'id': totem.id}) }}">Totem</a>#}
-            </li>
-            <li>
+            <li class="nav-item">
                 {% if app.user %}
-                    <a href="{{ path('app_logout') }}">Logout</a>
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                 {% else %}
-                    <a href="{{ path('app_login') }}">Login</a>
+                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
                 {% endif %}
             </li>
         </ul>
