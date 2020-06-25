@@ -34,6 +34,11 @@ class Treatment
      */
     private $recurrences;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Totem::class, mappedBy="treatment", cascade={"persist", "remove"})
+     */
+    private $totem;
+
 
     public function __construct()
     {
@@ -102,6 +107,23 @@ class Treatment
             if ($recurrence->getTreatment() === $this) {
                 $recurrence->setTreatment(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getTotem(): ?Totem
+    {
+        return $this->totem;
+    }
+
+    public function setTotem(Totem $totem): self
+    {
+        $this->totem = $totem;
+
+        // set the owning side of the relation if necessary
+        if ($totem->getTreatment() !== $this) {
+            $totem->setTreatment($this);
         }
 
         return $this;

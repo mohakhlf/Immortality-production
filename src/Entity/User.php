@@ -62,11 +62,6 @@ class User implements UserInterface
     private $score;
 
     /**
-     * @ORM\OneToOne(targetEntity=Totem::class, inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $totem;
-
-    /**
      * @ORM\OneToOne(targetEntity=Treatment::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $treatment;
@@ -205,18 +200,6 @@ class User implements UserInterface
     public function setScore(?int $score): self
     {
         $this->score = $score;
-
-        return $this;
-    }
-
-    public function getTotem(): ?Totem
-    {
-        return $this->totem;
-    }
-
-    public function setTotem(?Totem $totem): self
-    {
-        $this->totem = $totem;
 
         return $this;
     }
