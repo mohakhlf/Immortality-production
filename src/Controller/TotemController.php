@@ -11,6 +11,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class TotemController
@@ -18,26 +19,47 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class TotemController extends AbstractController
 {
-    private $user;
+    /**
+     * @var
+     */
+    private $security;
 
+    /**
+     * @var
+     */
     private $treatment;
 
+    /**
+     * @var
+     */
     private $totem;
 
-    public function __construct(UserRepository $userRepository, TreatmentRepository $treatmentRepository, TotemRepository $totemRepository)
+    /**
+     * TotemController constructor.
+     * @param Security $security
+     * @param TreatmentRepository $treatmentRepository
+     * @param TotemRepository $tr
+     */
+    public function __construct(Security $security, TreatmentRepository $treatmentRepository, TotemRepository $tr)
     {
-        $this->user = $userRepository;
+        $this->security = $security;
         $this->treatment = $treatmentRepository;
-        $this->totem = $totemRepository;
+        $this->totem = $tr;
     }
 
     /**
-     * @Route("/user/{user}/totem/", name="totem_show")
+     * @Route("/totem/", name="totem_show")
      * @return Response
      */
     public function show(): Response
     {
+        $user = $this->security->getUser();
+        $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
+        $totem = $this->totem->findOneBy(['treatment' => $treatment->getId()]);
+        //dd($user, $treatment, $totem);
+
         return $this->render('totem/index.html.twig', [
+            'totem' => $totem,
         ]);
     }
 }

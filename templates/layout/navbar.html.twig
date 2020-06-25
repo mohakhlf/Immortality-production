@@ -13,11 +13,14 @@
                     <a class="nav-link" href="{{ path('app_register') }}">Sign up</a>
                 {% endif %}
             </li>
-            <li>
-                {% if is_granted('ROLE_USER') %}
+            {% if is_granted('ROLE_USER') %}
+                <li>
                     <a class="nav-link" href="{{ path('patient_index') }}">Personal Space</a>
-                {% endif %}
-            </li>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{ path('totem_show', {user: app.user.id}) }}">Totem</a>
+                </li>
+            {% endif %}
             <li class="nav-item">
                 {% if app.user %}
                     <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
