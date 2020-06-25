@@ -19,6 +19,9 @@
                 {% endif %}
             </li>
             <li>
+                {#<a href="{{ path('totem_show', {'user': user.id, 'treatment': treatment.id, 'id': totem.id}) }}">Totem</a>#}
+            </li>
+            <li>
                 {% if app.user %}
                     <a href="{{ path('app_logout') }}">Logout</a>
                 {% else %}
