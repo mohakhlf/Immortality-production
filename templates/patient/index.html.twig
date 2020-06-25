@@ -32,15 +32,6 @@
 
     <h3>My Treatment</h3>
 
-    {% if not app.user.treatment %}
         <a href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
-    {% else %}
-        <table>
-            <tr>
-                <td>Name :</td>
-                <td>{{ app.user.treatment.name }}</td>
-            </tr>
-        </table>
-    {% endif %}
 
 {% endblock %}

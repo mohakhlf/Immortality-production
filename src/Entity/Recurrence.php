@@ -52,14 +52,8 @@ class Recurrence
 
     /**
      * @ORM\ManyToOne(targetEntity=Treatment::class, inversedBy="recurrences")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $treatment;
-
-    public function __construct()
-    {
-        $this->treatments = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
