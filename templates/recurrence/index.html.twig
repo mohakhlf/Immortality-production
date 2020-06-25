@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recurrence index{% endblock %}
+
+{% block body %}
+    <h1>Recurrence index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Morning</th>
+                <th>Noon</th>
+                <th>Evening</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recurrence in recurrences %}
+            <tr>
+                <td>{{ recurrence.id }}</td>
+                <td>{{ recurrence.morning }}</td>
+                <td>{{ recurrence.noon }}</td>
+                <td>{{ recurrence.evening }}</td>
+                <td>{{ recurrence.start ? recurrence.start|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ recurrence.end ? recurrence.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('recurrence_show', {'id': recurrence.id}) }}">show</a>
+                    <a href="{{ path('recurrence_edit', {'id': recurrence.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
