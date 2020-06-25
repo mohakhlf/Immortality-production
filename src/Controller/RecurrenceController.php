@@ -44,7 +44,8 @@ class RecurrenceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            //$recurrence->setEnd();
+            $recurrence->setStart(new \DateTime('now'));
+            $recurrence->setTreatment($treatment);
             $entityManager->persist($recurrence);
             $entityManager->flush();
 
