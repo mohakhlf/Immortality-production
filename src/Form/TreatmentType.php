@@ -15,10 +15,6 @@ class TreatmentType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('user', EntityType::class, [
-                'class'=>User::class,
-                'choice_label'=>'id',
-                'attr'=>['disabled'=>'disabled']])
         ;
     }
 
