@@ -56,7 +56,7 @@ class TotemController extends AbstractController
         $user = $this->security->getUser();
         $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
         $totem = $this->totem->findOneBy(['treatment' => $treatment->getId()]);
-        //dd($user, $treatment, $totem);
+        //dd($totem->getImage());
 
         return $this->render('totem/index.html.twig', [
             'totem' => $totem,
