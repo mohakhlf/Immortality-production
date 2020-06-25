@@ -14,12 +14,8 @@ class TreatmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('user', EntityType::class, [
-                'class'=>User::class,
-                'choice_label'=>'id',
-                'attr'=>['disabled'=>'disabled']])
-        ;
+
+            ->add('name');
     }
 
     public function configureOptions(OptionsResolver $resolver)
