@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
         $user->setName('Joseph');
         $user->setLastname('ANTHONY');
         $user->setEmail('user@gmail.com');
-        $user->setSex('Homme');
+        $user->setGender('Homme');
         $user->setRoles(['ROLE_USER']);
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,

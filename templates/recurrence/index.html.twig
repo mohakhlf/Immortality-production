@@ -24,11 +24,12 @@
                 <td>{{ recurrence.morning }}</td>
                 <td>{{ recurrence.noon }}</td>
                 <td>{{ recurrence.evening }}</td>
-                <td>{{ recurrence.start ? recurrence.start|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ recurrence.end ? recurrence.end|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ recurrence.start ? recurrence.start|date('Y-m-d') : '' }}</td>
+                <td>{{ recurrence.end ? recurrence.end|date('Y-m-d') : '' }}</td>
+                <td>{{ recurrence.drug.name }}</td>
                 <td>
-                    <a href="{{ path('recurrence_show', {'id': recurrence.id}) }}">show</a>
-                    <a href="{{ path('recurrence_edit', {'id': recurrence.id}) }}">edit</a>
+{#                    <a href="{{ path('recurrence_show', {'id': recurrence.id}) }}">show</a>#}
+{#                    <a href="{{ path('recurrence_edit', {'id': recurrence.id}) }}">edit</a>#}
                 </td>
             </tr>
         {% else %}

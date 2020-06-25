@@ -19,18 +19,9 @@ class RecurrenceType extends AbstractType
             ->add('morning')
             ->add('noon')
             ->add('evening')
-            ->add('start', \Symfony\Component\Form\Extension\Core\Type\DateType::class, [
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd'
-            ])
             ->add('end', \Symfony\Component\Form\Extension\Core\Type\DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd'
-            ])
-            ->add('treatment', EntityType::class, [
-                'class'=>Treatment::class,
-                'choice_label'=>'id',
-                'attr'=>['disabled'=>'disabled']
             ])
             ->add('drug', EntityType::class, [
                 'class'=>Drug::class,

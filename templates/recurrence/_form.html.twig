@@ -6,7 +6,6 @@
     {{ form_row(form.noon, {'label':'The noon :'}) }}
     {{ form_row(form.evening, {'label':'The evening :'}) }}
     <h3>Date of the end : </h3>
-{{ form_row(form.start) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
     <a href="{{ path('patient_index') }}">I'm done</a>
 {{ form_end(form) }}
