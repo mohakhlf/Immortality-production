@@ -27,11 +27,6 @@ class RecurrenceType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd'
             ])
-            ->add('treatment', EntityType::class, [
-                'class'=>Treatment::class,
-                'choice_label'=>'id',
-                'attr'=>['disabled'=>'disabled']
-            ])
             ->add('drug', EntityType::class, [
                 'class'=>Drug::class,
                 'choice_label'=>'name',
