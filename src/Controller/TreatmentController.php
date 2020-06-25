@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Totem;
 use App\Entity\Treatment;
 use App\Entity\User;
 use App\Form\TreatmentType;
+use App\Repository\ImagesRepository;
 use App\Repository\TreatmentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +36,7 @@ class TreatmentController extends AbstractController
      * @param User $user
      * @return Response
      */
-    public function new(Request $request, User $user): Response
+    public function new(Request $request, User $user, ImagesRepository $imagesRepository): Response
     {
         $treatment = new Treatment();
         $treatment->setUser($user);
@@ -42,8 +44,18 @@ class TreatmentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Generate a new totem
+            $totem = new Totem();
+            $image =$imagesRepository->findOneBy(['name' => '10-cat']);
+            $totem->setName($treatment->getName());
+            $totem->setImage($image);
+            $totem->setTreatment($treatment);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($treatment);
+            $entityManager->persist($totem);
+
+
             $entityManager->flush();
 
             return $this->redirectToRoute('recurrence_new', ['user'=>$user->getId(), 'treatment'=>$treatment->getId()]);
