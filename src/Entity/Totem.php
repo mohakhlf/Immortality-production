@@ -25,7 +25,7 @@ class Totem
     /**
      * @ORM\Column(type="integer")
      */
-    private $score = 0;
+    private $score = 10;
 
     /**
      * @ORM\OneToOne(targetEntity=Images::class, cascade={"persist", "remove"})
