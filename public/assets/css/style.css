@@ -10,7 +10,7 @@
     padding: 3%;
 }
 body {
-    background-color: #B3DEC1;
+    background-color: #d9f1df;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -34,6 +34,7 @@ body {
 }
 .title {
     font-family: 'Gloria Hallelujah', cursive;
+    margin-bottom: 3%;
 }
 .imgHome {
     width: 30%;
@@ -70,4 +71,23 @@ body {
 }
 .bt-viol:hover {
     color: white;
+}
+.persoPetit {
+    color: #9A94BC;
+    font-family: 'Indie Flower', cursive;
+    font-size: 26px;
+}
+.fondBulle {
+    background-image: url("https://zupimages.net/up/20/26/0u2f.png");
+    background-repeat: no-repeat;
+    margin-top: 5%;
+}
+.truc {
+    margin-top: 15%;
+
+
+}
+.POLICE {
+    font-size: 24px;
+    font-family: 'Indie Flower', cursive;
 }

@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container">
         {% if user.score == 0 %}
-            <h1 class="title">Oh ! You haven't earned a point yet </h1>
+            <h1 class="mb-5 title">Oh ! You haven't earned a point yet </h1>
             <h3><a class="persoA" href="{{ path('treatment_new', {id: user.id}) }}">-> Start your treatment to earn points !</a></h3>
         {% else %}
             <h1 class="title">Congratulations {{user.name}} !</h1>

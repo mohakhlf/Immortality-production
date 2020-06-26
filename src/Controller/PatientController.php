@@ -52,6 +52,7 @@ class PatientController extends AbstractController
 
         return $this->render('patient/index.html.twig', [
             'hasTreatment' => $hasTreatment,
+            'treatment'=> $treatment
         ]);
     }
 

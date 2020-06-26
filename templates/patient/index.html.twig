@@ -29,13 +29,18 @@
         </table>
     </div>
 <div class="espace">
-  <h1 class="mb-3 title">My Treatment</h1>
+
+        <h1 class="mb-3 title">My Treatment</h1>
 
     {% if hasTreatment == false %}
         <p class="blabla">You have'nt configured your treatment</p>
         <a class="btn bt-viol" href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
     {% else %}
-        <p>// Treatment recap here //</p>
+        <ul>
+        {% for recurrence in treatment.recurrences %}
+        <li><p>{{ recurrence.drug.name }}</p></li>
+        {% endfor %}
+        </ul>
     {% endif %}
 </div>
 

@@ -8,21 +8,26 @@
     <div class="row">
         <div class="col-6 d-flex flex-column justify-content-center align-items-center mt-3">
             {# <h1>={ Totem }=</h1> #}
-            <h3>Score : {{ totem.score }}</h3>
+            <h1 class="title">Hello ! </h1>
+            <h3 class="persoPetit">I'm {{ totem.name }}</h3>
             <div>
                 <img class="img-fluid" src="{{ asset('assets/images/' ~totem.image.name~ '.png') }}" alt="totem picture">
             </div>
         </div>
-        <div class="col-6 d-flex flex-column justify-content-center align-items-center mt-3">
-            <h5>It's {{ message }}</h5>
-            <div class="d-flex flex-column align-items-center">
-            {% if nbDrugs > 0 %}
-                <p>You have {{ nbDrugs }} item(s) to take now!</p>
-                <a class="btn btn-success btn-lg mb-3 " href="{{ path('totem_up') }}">I took my drugs</a>
-                <a class="btn btn-danger btn-sm mb-3" href="{{ path('totem_down') }}">I didn't took my drugs</a>
-            {% else %}
-                <p>You have nothing to take now !</p>
-            {% endif %}
+        <div class="col-6 d-flex flex-column align-items-center mt-3 fondBulle">
+            <div class="truc">
+                <h5 class="title">It's {{ message }} !</h5>
+                <div class="d-flex flex-column align-items-center">
+                    {% if nbDrugs > 0 %}
+                        <p class="POLICE">You have {{ nbDrugs }} item(s) to take now!</p>
+                        <a class="btn bt-viol mb-3 " href="{{ path('totem_up') }}">I took my drugs</a>
+                        <a class="btn btn-danger btn-sm mb-3" href="{{ path('totem_down') }}">I didn't took my drugs</a>
+                    {% else %}
+                        <p>You have nothing to take now !</p>
+                    {% endif %}
+            </div>
+
+            </div>
             </div>
         </div>
     </div>
