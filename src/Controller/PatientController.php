@@ -13,17 +13,24 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/patient")
  */
 class PatientController extends AbstractController
 {
+    private $security;
+
     private $user;
 
-    public function __construct(UserRepository $userRepository)
+    private $treatment;
+
+    public function __construct(Security $security, UserRepository $userRepository, TreatmentRepository $treatmentRepository)
     {
+        $this->security = $security;
         $this->user = $userRepository;
+        $this->treatment = $treatmentRepository;
     }
 
     /**
@@ -32,7 +39,19 @@ class PatientController extends AbstractController
      */
     public function index(): Response
     {
+        $user = $this->security->getUser();
+        $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
+
+        $hasTreatment = false;
+        if (isset($treatment)) {
+            $hasTreatment = true;
+        }
+        else {
+            $hasTreatment = false;
+        }
+
         return $this->render('patient/index.html.twig', [
+            'hasTreatment' => $hasTreatment,
         ]);
     }
 
