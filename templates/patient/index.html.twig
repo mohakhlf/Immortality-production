@@ -5,7 +5,7 @@
 {% block body %}
     <table>
         <tr>
-            <td>Name :</td>
+            <td>Name : </td>
             <td>{{ app.user.name }}</td>
         </tr>
         <tr>
@@ -30,8 +30,9 @@
 
     <a href="{{ path('patient_edit', {'id': app.user.id}) }}">Modifier</a>
 
-    <h3>My Treatment</h3>
+  <h3>My Treatment</h3>#}
 
-        <a href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
+
+       <a href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>#}
 
 {% endblock %}

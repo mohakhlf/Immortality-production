@@ -1,11 +1,20 @@
 {{ form_start(form) }}
-    <h3>Choose your drug from this list : </h3>
-    {{ form_row(form.drug, {'label':'My drug :'}) }}
-    <h3>How much : </h3>
-    {{ form_row(form.morning, {'label':'The morning :'}) }}
-    {{ form_row(form.noon, {'label':'The noon :'}) }}
-    {{ form_row(form.evening, {'label':'The evening :'}) }}
-    <h3>Date of the end : </h3>
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    <a href="{{ path('patient_index') }}">I'm done</a>
+    <div class="form-group">
+        <h3>Choose your drug from this list : </h3>
+        {{ form_row(form.drug, {'label':'My drug :', 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <h3>How much : </h3>
+        {{ form_row(form.morning, {'label':'The morning :', 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.noon, {'label':'The noon :', 'attr': {'class': 'form-control'}}) }}
+        {{ form_row(form.evening, {'label':'The evening :', 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        <h3>Date of the end : </h3>
+        {{ form_row(form.end, {'label': ' ', 'attr': {'class': 'form-control'}}) }}
+    </div>
+<button class="btn bt-color">{{ button_label|default('Save') }}</button>
+
+    <a class="title" href="{{ path('patient_index') }}">
+        I have finished setting up my drugs</a>
 {{ form_end(form) }}
