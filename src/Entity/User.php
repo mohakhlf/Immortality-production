@@ -71,6 +71,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->treatments = new ArrayCollection();
+        $this->badges = new ArrayCollection();
     }
 
     public function getId(): ?int
