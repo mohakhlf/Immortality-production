@@ -43,3 +43,13 @@ body {
     display: flex;
     justify-content: center;
 }
+.bt-color {
+    background-color: #FF5964;
+}
+.cen {
+    text-align: center;
+}
+.mini {
+    justify-content: center;
+    margin-top: 3%;
+}
