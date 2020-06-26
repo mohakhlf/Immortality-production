@@ -1,6 +1,33 @@
 {% extends 'base.html.twig' %}
+{% block title %}DoctoCat{% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
+    <h1 class="title">Welcome to <span class="custom">{{ title }}</span> !</h1>
+    <div class="home">
+        <img class="imgHome" src="{{ asset('assets/images/18-cat.png') }}" alt="withlovelovelove">
+    </div>
 
+
+    {% if is_granted('ROLE_USER')  %}
+
+    <p class="blabla">
+        Did you take your treatment today?
+        Do not forget to give your DoctoCat medicines to make it feel good.
+    </p>
+    <p class="blabla">
+        If you have not yet set up your treatment, do it right away,
+        <a href="{{ path('treatment_new', {id: app.user.id}) }}" class="blabla">here</a>.
+    </p>
+
+    {% else %}
+
+    <p class="blabla">
+        Carefully following a treatment has never been funnier than with <span class="custom">DoctoCat</span>! Register
+        and configure your treatment,    each time you take your medication, give it to your
+        <span class="custom">DoctoCat</span> to make it feel better. Be careful not to miss any,
+        otherwise <span class="custom">DoctoCat</span> will not be in great shape!
+    </p>
+
+    <p class="blabla">Get started right away by clicking <a href="" class="blabla">here</a> !</p>
+    {% endif %}
 {% endblock %}

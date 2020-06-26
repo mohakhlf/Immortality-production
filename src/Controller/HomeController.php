@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     public function index() :Response
     {
         return $this->render('home/index.html.twig', [
-            'title' => 'Welcome to the Nameless Project !',
+            'title' => 'DoctoCat',
         ]);
     }
 }
