@@ -27,6 +27,11 @@ class Images
      */
     private $path;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $score;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Images
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(int $score): self
+    {
+        $this->score = $score;
 
         return $this;
     }
