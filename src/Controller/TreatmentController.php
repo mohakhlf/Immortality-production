@@ -34,6 +34,7 @@ class TreatmentController extends AbstractController
      * @Route("/new/user/{id}", name="treatment_new", methods={"GET","POST"})
      * @param Request $request
      * @param User $user
+     * @param ImagesRepository $imagesRepository
      * @return Response
      */
     public function new(Request $request, User $user, ImagesRepository $imagesRepository): Response
