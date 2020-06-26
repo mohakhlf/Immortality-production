@@ -32,6 +32,10 @@
 
     <h3>My Treatment</h3>
 
+    {% if hasTreatment == false %}
         <a href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
+    {% else %}
+        <p>// Treatment recap here //</p>
+    {% endif %}
 
 {% endblock %}
