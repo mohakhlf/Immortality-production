@@ -5,8 +5,24 @@
 {% block body %}
 
 <div class="container">
-    <h3>Nom : {{ totem.name }}</h3>
-    <h3>Score : {{ totem.score }}</h3>
-    <img src="{{ asset('assets/images/' ~totem.image.name~ '.png') }}" alt="totem picture">
+    <div class="row">
+        <div class="offset-2 col-8 text-center">
+            <h1>={ Totem }=</h1>
+            <h3>Score : {{ totem.score }}</h3>
+            <div class="text-center">
+                <img class="image-fluid" src="{{ asset('assets/images/' ~totem.image.name~ '.png') }}" alt="totem picture">
+            </div>
+            <div>
+                <form method="post">
+                    <input type="number" placeholder="{{ totem.score - 1 }}" value="{{ totem.score - 1 }}">
+                    <button type="submit">I didn't took my drugs</button>
+                </form>
+                <form method="post">
+                    <input type="number" placeholder="{{ totem.score + 1 }}" value="{{ totem.score + 1 }}">
+                    <button type="submit">I took my drugs</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

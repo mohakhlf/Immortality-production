@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Totem;
 use App\Repository\ImagesRepository;
 use App\Repository\TotemRepository;
 use App\Repository\TreatmentRepository;
