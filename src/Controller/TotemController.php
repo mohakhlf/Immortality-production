@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Form\TotemScoreType;
 use App\Repository\ImagesRepository;
 use App\Repository\TotemRepository;
 use App\Repository\TreatmentRepository;
@@ -68,6 +67,9 @@ class TotemController extends AbstractController
         $user = $this->security->getUser();
         $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
         $totem = $this->totem->findOneBy(['treatment' => $treatment->getId()]);
+
+        $dateNow = new \DateTime('now');
+        dd($dateNow);
 
         // get scores to compare
         $totemScore = $totem->getScore();
