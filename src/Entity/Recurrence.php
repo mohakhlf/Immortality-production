@@ -45,12 +45,6 @@ class Recurrence
     private $end;
 
     /**
-     * @ORM\OneToOne(targetEntity=Drug::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $drug;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Treatment::class, inversedBy="recurrences")
      */
     private $treatment;
@@ -116,18 +110,6 @@ class Recurrence
     public function setEnd(\DateTimeInterface $end): self
     {
         $this->end = $end;
-
-        return $this;
-    }
-
-    public function getDrug(): ?Drug
-    {
-        return $this->drug;
-    }
-
-    public function setDrug(Drug $drug): self
-    {
-        $this->drug = $drug;
 
         return $this;
     }
