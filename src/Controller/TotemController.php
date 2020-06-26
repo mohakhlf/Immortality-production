@@ -113,6 +113,9 @@ class TotemController extends AbstractController
 
         // increase totem score by one
         $totem->setScore($totem->getScore() + 1);
+        // increase user score by one
+        $user->setScore($user->getScore() + 1);
+
         // update database
         $em->flush();
 
@@ -133,6 +136,7 @@ class TotemController extends AbstractController
 
         // decrease totem score by one
         $totem->setScore($totem->getScore() - 1);
+
         // update database
         $em->flush();
 
