@@ -14,11 +14,14 @@
                 {% endif %}
             </li>
             {% if is_granted('ROLE_USER') %}
-                <li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('patient_index') }}">Personal Space</a>
                 </li>
-                <li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ path('totem_show', {user: app.user.id}) }}">Totem</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('badges_show', {id: app.user.id}) }}">My Badges</a>
                 </li>
             {% endif %}
             <li class="nav-item">
