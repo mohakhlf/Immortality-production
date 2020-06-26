@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ImagesRepository;
+use App\Repository\RecurrenceRepository;
 use App\Repository\TotemRepository;
 use App\Repository\TreatmentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,6 +18,21 @@ use Symfony\Component\Security\Core\Security;
  */
 class TotemController extends AbstractController
 {
+    const MORNING = [
+        'start' => '07:00:00',
+        'end' => '11:59:59'
+    ];
+
+    const NOON = [
+        'start' => '12:00:00',
+        'end' => '13:59:59'
+    ];
+
+    const EVENING = [
+        'start' => '14:00:00',
+        'end' => '23:59:59'
+    ];
+
     /**
      * @var Security
      */
@@ -26,6 +42,11 @@ class TotemController extends AbstractController
      * @var TreatmentRepository
      */
     private $treatment;
+
+    /**
+     * @var RecurrenceRepository
+     */
+    private $recurrence;
 
     /**
      * @var TotemRepository
@@ -41,17 +62,20 @@ class TotemController extends AbstractController
      * TotemController constructor.
      * @param Security $security
      * @param TreatmentRepository $treatmentRepository
+     * @param RecurrenceRepository $recurrenceRepository
      * @param TotemRepository $tr
      * @param ImagesRepository $imagesRepository
      */
     public function __construct(
         Security $security,
         TreatmentRepository $treatmentRepository,
+        RecurrenceRepository $recurrenceRepository,
         TotemRepository $tr,
         ImagesRepository $imagesRepository)
     {
         $this->security = $security;
         $this->treatment = $treatmentRepository;
+        $this->recurrence = $recurrenceRepository;
         $this->totem = $tr;
         $this->images = $imagesRepository;
     }
@@ -66,10 +90,44 @@ class TotemController extends AbstractController
         // fetch user, treatment, totem and totem image
         $user = $this->security->getUser();
         $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
+        $recurrences = $this->recurrence->findBy(['treatment' => $treatment->getId()]);
+        //dd($recurrences);
         $totem = $this->totem->findOneBy(['treatment' => $treatment->getId()]);
 
-        $dateNow = new \DateTime('now');
-        dd($dateNow);
+        // getting current time
+        $currentDate = new \DateTime('now', new \DateTimeZone('Europe/paris'));
+        $currentTime = $currentDate->format('H:i:s');
+
+        //
+        $message = [];
+        $nbDrugs = 0;
+        if (self::MORNING['start'] < $currentTime && $currentTime < self::MORNING['end']) {
+            foreach ($recurrences as $recurrence) {
+                $message = 'Morning';
+                if ($recurrence->getMorning() > 0) {
+                    $nbDrugs = $nbDrugs + $recurrence->getMorning();
+                }
+            }
+        }
+        elseif (self::NOON['start'] < $currentTime && $currentTime < self::NOON['end']) {
+            foreach ($recurrences as $recurrence) {
+                $message = 'Noon';
+                if ($recurrence->getNoon() > 0) {
+                    $nbDrugs = $nbDrugs + $recurrence->getNoon();
+                }
+            }
+        }
+        elseif (self::EVENING['start'] < $currentTime && $currentTime < self::EVENING['end']) {
+            foreach ($recurrences as $recurrence) {
+                $message = 'Evening';
+                if ($recurrence->getEvening() > 0) {
+                    $nbDrugs = $nbDrugs + $recurrence->getEvening();
+                }
+            }
+        }
+        else {
+            $message = 'Go to sleep';
+        }
 
         // get scores to compare
         $totemScore = $totem->getScore();
@@ -98,6 +156,9 @@ class TotemController extends AbstractController
 
         return $this->render('totem/index.html.twig', [
             'totem' => $totem,
+            'currentTime' => $currentTime,
+            'message' => $message,
+            'nbDrugs' => $nbDrugs,
         ]);
     }
 
