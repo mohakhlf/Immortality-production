@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Badges{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% if user.score == 0 %}
+            <h1>Oh ! You haven't earned a point yet </h1>
+            <h3><a href="{{ path('treatment_new', {id: user.id}) }}">Start your treatment to earn points</a></h3>
+        {% else %}
+            <h1>Congratulations {{user.name}} !</h1>
+            <h3>Thanks to your {{user.score}} points, here are all the badges you have unlocked :</h3>
+        {% endif %}
+
+        <div class="row">
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 4 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/014-flag.png') }}" alt="IMAGE">
+                {% if user.score > 4 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 5 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 9 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/003-star.png') }}" alt="IMAGE">
+                {% if user.score > 9 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 10 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 14 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/010-medal-3.png') }}" alt="IMAGE">
+                {% if user.score > 14 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 15 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 19 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/016-star-2.png') }}" alt="IMAGE">
+                {% if user.score > 19 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 20 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 24 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/030-badge-6.png') }}" alt="IMAGE">
+                {% if user.score > 24 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 25 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 29 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/001-medal.png') }}" alt="IMAGE">
+                {% if user.score > 29 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 30 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 34 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/006-medal-2.png') }}" alt="IMAGE">
+                {% if user.score > 29 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 35 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 39 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/012-star-1.png') }}" alt="IMAGE">
+                {% if user.score > 29 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 40 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 44 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/005-medal-1.png') }}" alt="IMAGE">
+                {% if user.score > 29 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 45 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 49 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/029-medal-5.png') }}" alt="IMAGE">
+                {% if user.score > 29 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 50 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 54 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/018-medal-4.png') }}" alt="IMAGE">
+                {% if user.score > 54 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 55 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+            <div class="col-2 h-25">
+                <img class="img-fluid {% if user.score > 59 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/013-trophy.png') }}" alt="IMAGE">
+                {% if user.score > 59 %}
+                    <p>Well done ! You won this badge</p>
+                {% else %}
+                    <p>You need 60 points to unlock this badge! </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
