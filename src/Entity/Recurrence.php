@@ -49,6 +49,12 @@ class Recurrence
      */
     private $treatment;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Drug::class, inversedBy="recurrences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $drug;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +128,18 @@ class Recurrence
     public function setTreatment(?Treatment $treatment): self
     {
         $this->treatment = $treatment;
+
+        return $this;
+    }
+
+    public function getDrug(): ?Drug
+    {
+        return $this->drug;
+    }
+
+    public function setDrug(?Drug $drug): self
+    {
+        $this->drug = $drug;
 
         return $this;
     }
