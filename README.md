@@ -2,8 +2,8 @@
 <h3>Démarrer :</h3>
 <ul>
 <li>supprimer le fichier `composer.lock`</li>
-<li>éxécuter `composer install`</li>
-<li>éxécuter `bin/console doctrine:schema:update`</li>
+<li>exécuter `composer install`</li>
+<li>exécuter `bin/console doctrine:schema:update`</li>
 </ul>
 <h2>Fonctionnalités</h2>
 <h3>Opérationnelles :</h3>
