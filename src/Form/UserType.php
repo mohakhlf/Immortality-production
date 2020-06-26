@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +18,10 @@ class UserType extends AbstractType
             ->add('name')
             ->add('lastname')
             ->add('gender')
-            ->add('birth_date')
+            ->add('birth_date', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd'
+            ])
         ;
     }
 

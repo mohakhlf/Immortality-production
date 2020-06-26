@@ -3,40 +3,40 @@
 {% block title %}Personal Space{% endblock %}
 
 {% block body %}
-    <table>
-        <tr>
-            <td>Name : </td>
-            <td>{{ app.user.name }}</td>
-        </tr>
-        <tr>
-            <td>LastName :</td>
-            <td>{{ app.user.lastname }}</td>
-        </tr>
-        <tr>
-            <td>Email :</td>
-            <td>{{ app.user.email }}</td>
-        </tr>
-        <tr>
-            <td>Gender :</td>
-            <td>{{ app.user.gender }}</td>
-        </tr>
-        {# L'id c'est juste pour voir qui il me récupère par rapport au treatment, a enlever quand les routes
-        seront terminées #}
-        <tr>
-            <td>ID : </td>
-            <td>{{ app.user.id }}</td>
-        </tr>
-    </table>
+    <div class="titrE">
+        <h1 class="title">My Personal information </h1>
+        <a class="persoA" href="{{ path('patient_edit', {'id': app.user.id}) }}">Edit</a>
+    </div>
 
-    <a href="{{ path('patient_edit', {'id': app.user.id}) }}">Modifier</a>
-
-  <h3>My Treatment</h3>#}
+    <div class="mini">
+        <table class="table table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td scope="row">{{ app.user.name }}</td>
+                <td>{{ app.user.lastname }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{{ app.user.gender }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<div class="espace">
+  <h1 class="mb-3 title">My Treatment</h1>
 
     {% if hasTreatment == false %}
-        <a href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
+        <p class="blabla">You have'nt configured your treatment</p>
+        <a class="btn bt-viol" href="{{ path('treatment_new', {id: app.user.id}) }}">Create my treatment</a>
     {% else %}
         <p>// Treatment recap here //</p>
     {% endif %}
-
+</div>
 
 {% endblock %}

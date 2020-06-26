@@ -41,10 +41,10 @@ class RegistrationFormType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'choices' => [
                     ' ' => 'Chut',
-                    'Undefined' => 'indefini',
+                    'Undefined' => 'Undefined',
                     'Gender' => [
-                        'Boy' => 'Homme',
-                        'Girl' => 'Femme'
+                        'Boy' => 'Boy',
+                        'Girl' => 'Girl'
                     ]
                 ]
                 ])

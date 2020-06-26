@@ -53,3 +53,21 @@ body {
     justify-content: center;
     margin-top: 3%;
 }
+.titrE {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
+.persoA {
+    color: #9A94BC;
+    margin-left: 3%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+}
+.bt-viol {
+    background-color: #9A94BC;
+    color: white;
+}
+.bt-viol:hover {
+    color: white;
+}

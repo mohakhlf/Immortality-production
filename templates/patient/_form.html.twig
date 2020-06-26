@@ -1,4 +1,25 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="form-group">
+    {{ form_row(form.email, {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.password, {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.name, {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.lastname, {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.gender, {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(form.birth_date, {'attr': {'class':'form-control'}}) }}
+</div>
+<div class="titrE">
+    <button class="btn bt-color">{{ button_label|default('Save') }}</button>
+</div>
+
+
 {{ form_end(form) }}
