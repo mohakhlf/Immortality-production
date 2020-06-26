@@ -45,15 +45,15 @@ class Recurrence
     private $end;
 
     /**
-     * @ORM\OneToOne(targetEntity=Drug::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $drug;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Treatment::class, inversedBy="recurrences")
      */
     private $treatment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Drug::class, inversedBy="recurrences")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $drug;
 
     public function getId(): ?int
     {
@@ -120,18 +120,6 @@ class Recurrence
         return $this;
     }
 
-    public function getDrug(): ?Drug
-    {
-        return $this->drug;
-    }
-
-    public function setDrug(Drug $drug): self
-    {
-        $this->drug = $drug;
-
-        return $this;
-    }
-
     public function getTreatment(): ?Treatment
     {
         return $this->treatment;
@@ -140,6 +128,18 @@ class Recurrence
     public function setTreatment(?Treatment $treatment): self
     {
         $this->treatment = $treatment;
+
+        return $this;
+    }
+
+    public function getDrug(): ?Drug
+    {
+        return $this->drug;
+    }
+
+    public function setDrug(?Drug $drug): self
+    {
+        $this->drug = $drug;
 
         return $this;
     }

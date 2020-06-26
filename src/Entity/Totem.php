@@ -28,15 +28,16 @@ class Totem
     private $score = 10;
 
     /**
-     * @ORM\OneToOne(targetEntity=Images::class, cascade={"persist", "remove"})
-     */
-    private $image;
-
-    /**
      * @ORM\OneToOne(targetEntity=Treatment::class, inversedBy="totem", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $treatment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Images::class, inversedBy="totems")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -67,18 +68,6 @@ class Totem
         return $this;
     }
 
-    public function getImage(): ?Images
-    {
-        return $this->image;
-    }
-
-    public function setImage(?Images $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getTreatment(): ?Treatment
     {
         return $this->treatment;
@@ -87,6 +76,18 @@ class Totem
     public function setTreatment(Treatment $treatment): self
     {
         $this->treatment = $treatment;
+
+        return $this;
+    }
+
+    public function getImage(): ?Images
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Images $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
