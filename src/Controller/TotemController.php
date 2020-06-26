@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Totem;
+use App\Form\TotemScoreType;
 use App\Repository\ImagesRepository;
 use App\Repository\TotemRepository;
 use App\Repository\TreatmentRepository;
@@ -61,8 +61,6 @@ class TotemController extends AbstractController
      * @Route("/totem/", name="totem_show")
      * @param EntityManagerInterface $em
      * @return Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function show(EntityManagerInterface $em): Response
     {
@@ -99,5 +97,45 @@ class TotemController extends AbstractController
         return $this->render('totem/index.html.twig', [
             'totem' => $totem,
         ]);
+    }
+
+    /**
+     * @Route("/totem/up", name="totem_up")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function up(EntityManagerInterface $em): Response
+    {
+        // get the totem
+        $user = $this->security->getUser();
+        $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
+        $totem = $this->totem->findOneBy(['treatment' => $treatment->getId()]);
+
+        // increase totem score by one
+        $totem->setScore($totem->getScore() + 1);
+        // update database
+        $em->flush();
+
+        return $this->redirectToRoute('totem_show');
+    }
+
+    /**
+     * @Route("/totem/down", name="totem_down")
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function down(EntityManagerInterface $em): Response
+    {
+        // get the totem
+        $user = $this->security->getUser();
+        $treatment = $this->treatment->findOneBy(['user' => $user->getId()]);
+        $totem = $this->totem->findOneBy(['treatment' => $treatment->getId()]);
+
+        // decrease totem score by one
+        $totem->setScore($totem->getScore() - 1);
+        // update database
+        $em->flush();
+
+        return $this->redirectToRoute('totem_show');
     }
 }

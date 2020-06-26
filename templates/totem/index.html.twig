@@ -6,21 +6,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="offset-2 col-8 text-center">
+        <div class="offset-2 col-8 d-flex flex-column align-items-center">
             <h1>={ Totem }=</h1>
             <h3>Score : {{ totem.score }}</h3>
             <div class="text-center">
                 <img class="image-fluid" src="{{ asset('assets/images/' ~totem.image.name~ '.png') }}" alt="totem picture">
             </div>
-            <div>
-                <form method="post">
-                    <input type="number" placeholder="{{ totem.score - 1 }}" value="{{ totem.score - 1 }}">
-                    <button type="submit">I didn't took my drugs</button>
-                </form>
-                <form method="post">
-                    <input type="number" placeholder="{{ totem.score + 1 }}" value="{{ totem.score + 1 }}">
-                    <button type="submit">I took my drugs</button>
-                </form>
+            <div class="d-flex flex-column align-items-center">
+                <a class="btn btn-success btn-lg mb-3 " href="{{ path('totem_up') }}">I took my drugs</a>
+                <a class="btn btn-danger btn-sm mb-3" href="{{ path('totem_down') }}">I didn't took my drugs</a>
             </div>
         </div>
     </div>
