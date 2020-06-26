@@ -3,8 +3,10 @@
 {% block title %}Choose a new Drug{% endblock %}
 
 {% block body %}
-    <h1>Choose your drug</h1>
-
-    {{ include('recurrence/_form.html.twig') }}
-
+    <h1 class="h3 mb-3 title cen">Choose your drug</h1>
+<div class="d-flex mini">
+    <div class="w-50">
+        {{ include('recurrence/_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

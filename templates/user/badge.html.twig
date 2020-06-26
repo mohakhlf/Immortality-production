@@ -5,18 +5,18 @@
 {% block body %}
     <div class="container">
         {% if user.score == 0 %}
-            <h1>Oh ! You haven't earned a point yet </h1>
-            <h3><a href="{{ path('treatment_new', {id: user.id}) }}">Start your treatment to earn points</a></h3>
+            <h1 class="title">Oh ! You haven't earned a point yet </h1>
+            <h3><a class="persoA" href="{{ path('treatment_new', {id: user.id}) }}">-> Start your treatment to earn points !</a></h3>
         {% else %}
-            <h1>Congratulations {{user.name}} !</h1>
-            <h3>Thanks to your {{user.score}} points, here are all the badges you have unlocked :</h3>
+            <h1 class="title">Congratulations {{user.name}} !</h1>
+            <h3 class="persoA">Thanks to your {{user.score}} points, here are all the badges you have unlocked :</h3>
         {% endif %}
 
         <div class="row">
             <div class="col-2 h-25">
                 <img class="img-fluid {% if user.score > 4 %}cho{% else %}chocapic{% endif %}" src="{{ asset('assets/images/014-flag.png') }}" alt="IMAGE">
                 {% if user.score > 4 %}
-                    <p>Well done ! You won this badge</p>
+                    <p >Well done ! You won this badge</p>
                 {% else %}
                     <p>You need 5 points to unlock this badge! </p>
                 {% endif %}

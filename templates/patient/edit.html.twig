@@ -3,9 +3,11 @@
 {% block title %}Edit{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+<div class="titrE">
+    <h1 class="title">Edit User</h1>
+        <a class="persoA" href="{{ path('patient_index') }}">Back</a>
+</div>
 
     {{ include('patient/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('patient_index') }}">back to personnal space</a>
 {% endblock %}
