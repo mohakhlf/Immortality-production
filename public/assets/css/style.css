@@ -1,3 +1,45 @@
 .chocapic {
     filter: grayscale();
 }
+.bodi {
+    width: 60%;
+    align-self: center;
+    background-color: white;
+    margin-top: 7%;
+    margin-bottom: 3%;
+    padding: 3%;
+}
+body {
+    background-color: #B3DEC1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.footer {
+    color: white;
+    text-align: center;
+    padding-right: 2%;
+    font-size: 12px;
+}
+.custom {
+    font-weight: bold;
+    color: #9A94BC;
+}
+.blabla {
+    margin-top: 4%;
+    font-size: 24px;
+    font-family: 'Indie Flower', cursive;
+
+}
+.title {
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.imgHome {
+    width: 30%;
+    text-align: center;
+}
+.home {
+    display: flex;
+    justify-content: center;
+}
