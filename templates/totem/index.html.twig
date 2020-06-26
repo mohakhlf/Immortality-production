@@ -6,15 +6,23 @@
 
 <div class="container">
     <div class="row">
-        <div class="offset-2 col-8 d-flex flex-column align-items-center mt-3">
+        <div class="col-6 d-flex flex-column justify-content-center align-items-center mt-3">
             {# <h1>={ Totem }=</h1> #}
             <h3>Score : {{ totem.score }}</h3>
-            <div class="text-center w-50">
+            <div>
                 <img class="img-fluid" src="{{ asset('assets/images/' ~totem.image.name~ '.png') }}" alt="totem picture">
             </div>
+        </div>
+        <div class="col-6 d-flex flex-column justify-content-center align-items-center mt-3">
+            <h5>It's {{ message }}</h5>
             <div class="d-flex flex-column align-items-center">
+            {% if nbDrugs > 0 %}
+                <p>You have {{ nbDrugs }} item(s) to take now!</p>
                 <a class="btn btn-success btn-lg mb-3 " href="{{ path('totem_up') }}">I took my drugs</a>
                 <a class="btn btn-danger btn-sm mb-3" href="{{ path('totem_down') }}">I didn't took my drugs</a>
+            {% else %}
+                <p>You have nothing to take now !</p>
+            {% endif %}
             </div>
         </div>
     </div>

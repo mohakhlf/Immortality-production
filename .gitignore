@@ -9,5 +9,3 @@
 /vendor/
 .idea/
 ###< symfony/framework-bundle ###
-
-*.sql
